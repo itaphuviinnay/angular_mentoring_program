@@ -1,0 +1,50 @@
+.course-container {
+  height: 170px;
+  border-radius: 8px;
+  box-shadow: 0 1px 24px 0 rgba(18, 21, 35, 0.08);
+  background-color: #ffffff;
+  margin-bottom: 20px;
+  .title {
+    font-size: 24px;
+    font-weight: 600;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.25;
+    padding: 15px 0 0 15px;
+    margin: 0;
+    letter-spacing: normal;
+    color: #2c2f3c;
+  }
+  .course-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    .description {
+      flex: 6;
+      font-size: 14px;
+      font-weight: normal;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 1.7;
+      padding: 15px;
+      margin: 0;
+      letter-spacing: normal;
+      color: #525462;
+    }
+    .actions {
+      flex: 1;
+      height: inherit;
+      align-self: center;
+      button {
+        width: 86px;
+        padding: 5px;
+        background-color: #30b6dd;
+        color: #fff;
+        border-radius: 3px;
+        &:last-child {
+          margin-left: 15px;
+        }
+      }
+    }
+  }
+}

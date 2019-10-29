@@ -12,6 +12,7 @@ import { FooterComponent } from './footer/footer.component';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import { SearchCourseComponent } from './search-course/search-course.component';
 import { SectionComponent } from './section/section.component';
+import { LoadMoreComponent } from './load-more/load-more.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { SectionComponent } from './section/section.component';
     FooterComponent,
     BreadcrumbComponent,
     SearchCourseComponent,
-    SectionComponent
+    SectionComponent,
+    LoadMoreComponent
   ],
   imports: [
     BrowserModule,

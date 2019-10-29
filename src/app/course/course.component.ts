@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-course',
@@ -6,12 +6,19 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./course.component.scss']
 })
 export class CourseComponent implements OnInit {
-
   @Input() course: Course;
+  @Output() editCourse = new EventEmitter<number>();
+  @Output() deleteCourse = new EventEmitter<number>();
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
+  ngOnInit() {}
+
+  onCourseEdit() {
+    this.editCourse.emit(this.course.id);
   }
 
+  onCourseDelete() {
+    this.deleteCourse.emit(this.course.id);
+  }
 }

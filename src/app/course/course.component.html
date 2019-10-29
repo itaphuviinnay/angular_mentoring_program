@@ -1,2 +1,10 @@
-<h3>{{ course.title }}</h3>
-<p>{{ course.description }}</p>
+<div class="course-container">
+  <h3 class="title">{{ course.title }}</h3>
+  <div class="course-info">
+    <p class="description">{{ course.description }}</p>
+    <div class="actions">
+      <button (click)="onCourseEdit()">Edit</button>
+      <button (click)="onCourseDelete()">Delete</button>
+    </div>
+  </div>
+</div>
