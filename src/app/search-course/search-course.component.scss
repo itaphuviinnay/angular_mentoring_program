@@ -1,0 +1,20 @@
+.search-course-container {
+  margin-top: 30px;
+  height: 64px;
+  input {
+    width: 360px;
+    height: 44px;
+    padding-left: 15px;
+    border: solid 1px #d9dbe3;
+    border-radius: 3px;
+  }
+  .search-btn {
+    width: 100px;
+    cursor: pointer;
+    height: 48px;
+    margin-left: 10px;
+    border-radius: 3px;
+    background-color: #9bc837;
+    color: #fff;
+  }
+}
