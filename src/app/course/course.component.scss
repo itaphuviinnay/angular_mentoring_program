@@ -32,9 +32,12 @@
       color: #525462;
     }
     .actions {
-      flex: 1;
-      height: inherit;
+      display: flex;
+      flex: 2;
+      height: 30px;
       align-self: center;
+      padding-right: 15px;
+      justify-content: flex-end;
       button {
         width: 86px;
         padding: 5px;
