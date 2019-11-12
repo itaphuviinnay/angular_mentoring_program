@@ -1,6 +1,8 @@
 <app-breadcrumb></app-breadcrumb>
 <div class="courses-block">
-  <app-search-course></app-search-course>
+  <app-search-course
+    (courseSearch)="onCourseSearch($event)"
+  ></app-search-course>
   <app-add-course></app-add-course>
-  <app-course-list></app-course-list>
+  <app-course-list [courses]="courseList"></app-course-list>
 </div>

@@ -1,0 +1,1 @@
+export { CourseFilterPipe } from './course-filter.pipe';
