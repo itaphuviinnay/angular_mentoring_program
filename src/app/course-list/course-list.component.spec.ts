@@ -4,6 +4,7 @@ import { CourseListComponent } from './course-list.component';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { CourseOrderByPipe } from '../shared/pipes/course-order';
 import { Course } from '../models/course';
+import { CoursesService } from '../shared/services/courses/courses.service';
 
 const courses: Course[] = [
   {
@@ -39,6 +40,7 @@ describe('CourseListComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [CourseListComponent, CourseOrderByPipe],
+      providers: [CoursesService],
       schemas: [NO_ERRORS_SCHEMA]
     }).compileComponents();
   }));

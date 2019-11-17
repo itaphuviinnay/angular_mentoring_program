@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { Course } from '../models/course';
+import { CoursesService } from '../shared/services/courses/courses.service';
 
 @Component({
   selector: 'app-course-list',
@@ -10,10 +11,9 @@ export class CourseListComponent implements OnInit, OnChanges {
   @Input() courses: Course[];
   isDataEmpty: boolean;
 
-  constructor() { }
+  constructor(public coursesService: CoursesService) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   ngOnChanges() {
     this.isDataEmpty = this.courses.length === 0;
@@ -24,7 +24,6 @@ export class CourseListComponent implements OnInit, OnChanges {
   }
 
   onDeleteCourse(courseId: number) {
-    console.log('Delete Course Id', courseId);
+    this.coursesService.deleteCourse(courseId);
   }
-
 }

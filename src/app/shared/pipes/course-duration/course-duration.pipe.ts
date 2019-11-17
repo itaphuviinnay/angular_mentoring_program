@@ -4,13 +4,13 @@ import { Pipe, PipeTransform } from '@angular/core';
   name: 'courseDuration'
 })
 export class CourseDurationPipe implements PipeTransform {
-  transform(value: number): string {
-    if (value < 60) {
-      return `${value} min`;
+  transform(courseDuration: number): string {
+    if (courseDuration < 60) {
+      return `${courseDuration} min`;
     }
-    if (value === 60) {
-      return `${~~(value / 60)} h`;
+    if (courseDuration === 60) {
+      return `${~~(courseDuration / 60)} h`;
     }
-    return `${~~(value / 60)} h ${value % 60} min`;
+    return `${~~(courseDuration / 60)} h ${courseDuration % 60} min`;
   }
 }

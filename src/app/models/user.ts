@@ -1,5 +1,5 @@
-interface User {
-    id: number;
-    firstName: string;
-    lastName: string;
+export interface User {
+  email: string;
+  password: string;
+  isAuthenticated: boolean;
 }

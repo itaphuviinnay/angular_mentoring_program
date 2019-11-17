@@ -11,15 +11,17 @@ export class CourseComponent implements OnInit {
   @Output() editCourse = new EventEmitter<number>();
   @Output() deleteCourse = new EventEmitter<number>();
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() { }
+  ngOnInit() {}
 
   onCourseEdit() {
     this.editCourse.emit(this.course.id);
   }
 
   onCourseDelete() {
-    this.deleteCourse.emit(this.course.id);
+    if (confirm('Do you really want to delete this course')) {
+      this.deleteCourse.emit(this.course.id);
+    }
   }
 }
