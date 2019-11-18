@@ -9,8 +9,8 @@ export class CourseDurationPipe implements PipeTransform {
       return `${courseDuration} min`;
     }
     if (courseDuration === 60) {
-      return `${~~(courseDuration / 60)} h`;
+      return `${courseDuration / 60} h`;
     }
-    return `${~~(courseDuration / 60)} h ${courseDuration % 60} min`;
+    return `${(courseDuration / 60).toFixed()} h ${courseDuration % 60} min`;
   }
 }

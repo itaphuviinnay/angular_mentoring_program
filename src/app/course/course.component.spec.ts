@@ -49,14 +49,14 @@ describe('CourseComponent', () => {
 
   it('should call onCourseEdit when course edit button is clicked', fakeAsync(() => {
     const spyOnEdit = spyOn(component, 'onCourseEdit');
-    let button = fixture.debugElement.query(By.css('.edit-btn'));
+    const button = fixture.debugElement.query(By.css('.edit-btn'));
     button.triggerEventHandler('click', null);
     expect(spyOnEdit).toHaveBeenCalled();
   }));
 
   it('should call onCourseDelete when course delete button is clicked', fakeAsync(() => {
     const spyOnDelete = spyOn(component, 'onCourseDelete');
-    let button = fixture.debugElement.query(By.css('.delete-btn'));
+    const button = fixture.debugElement.query(By.css('.delete-btn'));
     button.triggerEventHandler('click', null);
     expect(spyOnDelete).toHaveBeenCalled();
   }));

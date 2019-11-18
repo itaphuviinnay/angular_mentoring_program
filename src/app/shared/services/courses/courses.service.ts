@@ -26,10 +26,10 @@ export class CoursesService {
   }
 
   deleteCourse(courseId: number) {
-    const courses = this.courses$.value.filter(
+    const updatedCourses = this.courses$.value.filter(
       course => course.id !== courseId
     );
-    this.courses$.next(courses);
+    this.courses$.next(updatedCourses);
     console.log(`Course with id: ${courseId} is deleted`);
   }
 }

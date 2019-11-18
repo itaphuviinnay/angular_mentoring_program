@@ -8,6 +8,14 @@ import { BehaviorSubject } from 'rxjs';
 export class AuthService {
   isAuthenticated$ = new BehaviorSubject<boolean>(false);
 
+  constructor() {
+    const userInfo = localStorage.getItem('userInfo');
+    const isAuthenticated = userInfo
+      ? JSON.parse(userInfo).isAuthenticated
+      : false;
+    this.isAuthenticated$.next(isAuthenticated);
+  }
+
   login(user: User) {
     localStorage.setItem('userInfo', JSON.stringify(user));
     this.isAuthenticated$.next(true);

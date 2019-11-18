@@ -5,9 +5,9 @@ import { Course } from 'src/app/models/course';
   name: 'courseFilter'
 })
 export class CourseFilterPipe implements PipeTransform {
-  transform(input: string, courses: Course[]) {
+  transform(searchInput: string, courses: Course[]) {
     return courses.filter(course =>
-      course.title.toLowerCase().includes(input.toLowerCase())
+      course.title.toLowerCase().includes(searchInput.toLowerCase())
     );
   }
 }
