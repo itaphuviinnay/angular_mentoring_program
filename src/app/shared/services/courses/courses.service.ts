@@ -19,6 +19,8 @@ export class CoursesService {
 
   createCourse(course: Course) {
     console.log('Creating new course');
+    const updatedCourses = [...courses, course];
+    this.courses$.next(updatedCourses);
   }
 
   updateCourse(course: Partial<Course>) {

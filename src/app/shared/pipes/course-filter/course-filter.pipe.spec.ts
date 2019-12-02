@@ -22,6 +22,7 @@ describe('CourseDurationPipe', () => {
         description: `Angular – is one of the most famous and fast-growing frameworks in our days. It's extremely modular, lightweight, and easy to learn`,
         duration: 80,
         creationDate: new Date('11/21/2019'),
+        authors: ['Vinay', 'EPAM'],
         topRated: true
       }
     ];

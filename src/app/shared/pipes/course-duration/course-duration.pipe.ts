@@ -5,6 +5,9 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class CourseDurationPipe implements PipeTransform {
   transform(courseDuration: number): string {
+    if (!courseDuration) {
+      return '';
+    }
     if (courseDuration < 60) {
       return `${courseDuration} min`;
     }

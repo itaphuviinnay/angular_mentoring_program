@@ -1,8 +1,7 @@
 <div class="search-course-container">
   <input
     type="text"
-    placeholder="&#xF002; Text to search"
-    [(ngModel)]="searchInput"
+    placeholder="Search for courses"
+    [formControl]="searchControl"
   />
-  <button class="search-btn" (click)="onCourseSearch()">Search</button>
 </div>

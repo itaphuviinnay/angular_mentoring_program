@@ -1,5 +1,24 @@
 .courses-container {
-  margin-top: 15x;
+  margin: 0 60px;
+  .courses-block {
+    .add-course {
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      .add-course-btn {
+        cursor: pointer;
+        width: 136px;
+        height: 36px;
+        color: #fff;
+        border-radius: 3px;
+        background-color: #30b6dd;
+        i.fa {
+          margin-right: 8px;
+        }
+      }
+    }
+  }
   .no-data-wrapper {
     height: 48px;
     border-radius: 6px;

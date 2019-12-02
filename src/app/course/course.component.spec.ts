@@ -11,6 +11,7 @@ import { By } from '@angular/platform-browser';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { CustomBorderDirective } from '../shared/directives/custom-border.directive';
 import { CourseDurationPipe } from '../shared/pipes/course-duration';
+import { CourseAuthorsPipe } from '../shared/pipes/course-authors';
 
 const course: Course = {
   id: 1,
@@ -18,6 +19,7 @@ const course: Course = {
   description: `Angular – is one of the most famous and fast-growing frameworks in our days. It's extremely modular, lightweight, and easy to learn`,
   duration: 60,
   creationDate: new Date(),
+  authors: ['Vinay', 'EPAM'],
   topRated: false
 };
 
@@ -30,7 +32,8 @@ describe('CourseComponent', () => {
       declarations: [
         CourseComponent,
         CustomBorderDirective,
-        CourseDurationPipe
+        CourseDurationPipe,
+        CourseAuthorsPipe
       ],
       schemas: [NO_ERRORS_SCHEMA]
     }).compileComponents();

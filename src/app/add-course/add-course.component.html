@@ -1,6 +1,56 @@
-<div class="add-course">
-  <button class="add-course-btn">
-    <i class="fa fa-plus" aria-hidden="true"></i>
-    Add Course
-  </button>
+<div class="new-course-container">
+  <form class="content" [formGroup]="newCourseForm" (ngSubmit)="createCourse()">
+    <div class="title">
+      <span>New Course</span>
+    </div>
+    <div class="fields">
+      <div class="field-label">
+        <label>Title:</label>
+        <label>*required</label>
+      </div>
+      <input
+        type="text"
+        formControlName="title"
+        placeholder="Enter course title"
+      />
+    </div>
+    <div class="fields">
+      <div class="field-label">
+        <label>Description:</label>
+        <label>*required</label>
+      </div>
+      <app-course-description></app-course-description>
+    </div>
+    <div class="fields">
+      <div class="field-label">
+        <label>Duration:</label>
+        <label>*required</label>
+      </div>
+      <app-course-duration></app-course-duration>
+    </div>
+    <div class="fields">
+      <div class="field-label">
+        <label>Date:</label>
+        <label>*required</label>
+      </div>
+      <app-course-date></app-course-date>
+    </div>
+    <div class="fields">
+      <div class="field-label">
+        <label>Authors:</label>
+        <label>*required</label>
+      </div>
+      <app-course-authors></app-course-authors>
+    </div>
+    <div class="bottom-row">
+      <button type="button" (click)="cancelCourseCreation()">Cancel</button>
+      <button
+        type="submit"
+        [disabled]="newCourseForm.invalid"
+        [ngClass]="newCourseForm.invalid === false ? 'active' : 'disabled'"
+      >
+        Save
+      </button>
+    </div>
+  </form>
 </div>
