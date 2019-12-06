@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Route } from '@angular/router';
 import { CoursesComponent } from './courses.component';
-import { CourseListComponent } from '../course-list/course-list.component';
+import { CourseListComponent } from './course-list/course-list.component';
 
 const routes: Route[] = [
   {
@@ -13,9 +13,16 @@ const routes: Route[] = [
         component: CourseListComponent
       },
       {
-        path: 'add-course',
+        path: 'new',
         loadChildren: () =>
-          import('../add-course/add-course.module').then(m => m.AddCourseModule)
+          import('./add-course/add-course.module').then(m => m.AddCourseModule)
+      },
+      {
+        path: ':id',
+        loadChildren: () =>
+          import('./edit-course/edit-course.module').then(
+            m => m.EditCourseModule
+          )
       }
     ]
   }

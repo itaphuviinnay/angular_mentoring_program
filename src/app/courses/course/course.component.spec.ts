@@ -6,12 +6,12 @@ import {
   fakeAsync
 } from '@angular/core/testing';
 import { CourseComponent } from './course.component';
-import { Course } from '../models/course';
+import { Course } from '../../models/course';
 import { By } from '@angular/platform-browser';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { CustomBorderDirective } from '../shared/directives/custom-border.directive';
-import { CourseDurationPipe } from '../shared/pipes/course-duration';
-import { CourseAuthorsPipe } from '../shared/pipes/course-authors';
+import { CustomBorderDirective } from '../../shared/directives/custom-border.directive';
+import { CourseDurationPipe } from '../../shared/pipes/course-duration';
+import { CourseAuthorsPipe } from '../../shared/pipes/course-authors';
 
 const course: Course = {
   id: 1,

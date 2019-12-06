@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Course } from '../models/course';
-import { CoursesService } from '../shared/services/courses/courses.service';
-import { CourseFilterPipe } from '../shared/pipes/course-filter';
+import { Course } from '../../models/course';
+import { CoursesService } from '../../shared/services/courses/courses.service';
+import { CourseFilterPipe } from '../../shared/pipes/course-filter';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
@@ -37,7 +37,7 @@ export class CourseListComponent implements OnInit, OnDestroy {
   }
 
   addNewCourse() {
-    this.router.navigateByUrl('/courses/add-course');
+    this.router.navigateByUrl('/courses/new');
   }
 
   ngOnDestroy() {
@@ -47,7 +47,7 @@ export class CourseListComponent implements OnInit, OnDestroy {
   }
 
   onEditCourse(courseId: number) {
-    console.log('Edit Course Id', courseId);
+    this.router.navigateByUrl(`/courses/${courseId}`);
   }
 
   onDeleteCourse(courseId: number) {

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CoursesComponent } from './courses.component';
-import { CourseListComponent } from '../course-list/course-list.component';
-import { CourseComponent } from '../course/course.component';
+import { CourseListComponent } from './course-list/course-list.component';
+import { CourseComponent } from './course/course.component';
 import { SearchCourseComponent } from '../search-course/search-course.component';
 import { SectionComponent } from '../section/section.component';
 import { LoadMoreComponent } from '../load-more/load-more.component';

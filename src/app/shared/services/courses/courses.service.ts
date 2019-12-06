@@ -7,24 +7,27 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class CoursesService {
-  courses$ = new BehaviorSubject<Course[]>(courses);
+  private allCourses = courses;
+  courses$ = new BehaviorSubject<Course[]>(this.allCourses);
 
   getAllCourses(): Course[] {
     return this.courses$.value;
   }
 
   getCourseById(courseId: number) {
-    console.log(`Course details for id: ${courseId}`);
+    return this.getAllCourses().find(c => c.id === courseId);
   }
 
   createCourse(course: Course) {
-    console.log('Creating new course');
-    const updatedCourses = [...courses, course];
-    this.courses$.next(updatedCourses);
+    this.allCourses = [...this.allCourses, course];
+    this.courses$.next(this.allCourses);
   }
 
-  updateCourse(course: Partial<Course>) {
-    console.log(`Updating course with id: ${course.id}`);
+  updateCourse(updatedCourse: Course) {
+    this.allCourses = this.allCourses.map(course =>
+      course.id === updatedCourse.id ? updatedCourse : course
+    );
+    this.courses$.next(this.allCourses);
   }
 
   deleteCourse(courseId: number) {
@@ -32,6 +35,5 @@ export class CoursesService {
       course => course.id !== courseId
     );
     this.courses$.next(updatedCourses);
-    console.log(`Course with id: ${courseId} is deleted`);
   }
 }

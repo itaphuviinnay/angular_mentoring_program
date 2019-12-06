@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Course } from '../models/course';
-import { CoursesService } from '../shared/services/courses/courses.service';
+import { Course } from '../../models/course';
+import { CoursesService } from '../../shared/services/courses/courses.service';
 
 @Component({
   selector: 'app-add-course',
@@ -29,7 +29,7 @@ export class AddCourseComponent implements OnInit {
       title: this.title,
       description: this.description,
       duration: this.duration,
-      date: this.date,
+      creationDate: this.date,
       authors: this.authors
     });
   }
@@ -38,7 +38,8 @@ export class AddCourseComponent implements OnInit {
     const formValue = this.newCourseForm.value;
     const newCourse: Course = {
       ...formValue,
-      creationDate: new Date(formValue.date),
+      id: this.courseService.courses$.value.length + 1,
+      creationDate: new Date(Date.parse(formValue.creationDate)),
       authors: [formValue.authors]
     };
     this.courseService.createCourse(newCourse);
