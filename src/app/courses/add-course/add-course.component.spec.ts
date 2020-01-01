@@ -11,6 +11,7 @@ import {
 import { RouterTestingModule } from '@angular/router/testing';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CoursesService } from '../../shared/services/courses/courses.service';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('AddCourseComponent', () => {
   let component: AddCourseComponent;
@@ -18,7 +19,12 @@ describe('AddCourseComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [FormsModule, ReactiveFormsModule, RouterTestingModule],
+      imports: [
+        FormsModule,
+        ReactiveFormsModule,
+        RouterTestingModule,
+        HttpClientTestingModule
+      ],
       declarations: [AddCourseComponent],
       providers: [CoursesService],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]

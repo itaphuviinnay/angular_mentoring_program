@@ -11,7 +11,10 @@
     </div>
   </div>
   <ng-container
-    *ngFor="let course of courseList | courseOrderBy; trackBy: trackCourses"
+    *ngFor="
+      let course of courses$ | async | courseOrderBy;
+      trackBy: trackCourses
+    "
   >
     <app-course
       [course]="course"
@@ -19,10 +22,13 @@
       (deleteCourse)="onDeleteCourse($event)"
     ></app-course>
   </ng-container>
-  <div *ngIf="isDataEmpty" class="no-data-wrapper">
+  <div *ngIf="isDataEmpty$ | async" class="no-data-wrapper">
     <span>
       NO DATA. FEEL FREE TO ADD NEW COURSE
     </span>
   </div>
-  <app-load-more></app-load-more>
+  <app-load-more
+    (loadMoreCourses)="onLoadMoreCourses()"
+    [allCoursesLoaded]="allCoursesLoaded$ | async"
+  ></app-load-more>
 </div>

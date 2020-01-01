@@ -1,5 +1,12 @@
 export interface User {
-  email: string;
+  id: number;
+  login: string;
   password: string;
-  isAuthenticated: boolean;
+  name: NameModel;
+  fakeToken: string;
+}
+
+export interface NameModel {
+  first: string;
+  last: string;
 }

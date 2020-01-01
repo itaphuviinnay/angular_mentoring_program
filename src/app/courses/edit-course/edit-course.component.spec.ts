@@ -12,6 +12,8 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CoursesService } from '../../shared/services/courses/courses.service';
 import { DatePipe } from '@angular/common';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { CourseAuthorsPipe } from 'src/app/shared/pipes/course-authors';
 
 describe('EditCourseComponent', () => {
   let component: EditCourseComponent;
@@ -19,19 +21,24 @@ describe('EditCourseComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [FormsModule, ReactiveFormsModule, RouterTestingModule],
+      imports: [
+        FormsModule,
+        ReactiveFormsModule,
+        RouterTestingModule,
+        HttpClientTestingModule
+      ],
       declarations: [EditCourseComponent],
-      providers: [CoursesService, DatePipe],
+      providers: [CoursesService, DatePipe, CourseAuthorsPipe],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     }).compileComponents();
   }));
 
   beforeEach(() => {
     const formGroup = new FormGroup({
-      title: new FormControl('', Validators.required),
+      name: new FormControl('', Validators.required),
       description: new FormControl('', Validators.required),
-      duration: new FormControl('', Validators.required),
-      creationDate: new FormControl('', Validators.required),
+      length: new FormControl('', Validators.required),
+      date: new FormControl('', Validators.required),
       authors: new FormControl([], Validators.required)
     });
     fixture = TestBed.createComponent(EditCourseComponent);

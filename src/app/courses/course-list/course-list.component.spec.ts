@@ -12,21 +12,21 @@ import { CoursesService } from '../../shared/services/courses/courses.service';
 import { CourseFilterPipe } from '../../shared/pipes/course-filter';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Router } from '@angular/router';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { of } from 'rxjs';
 
 describe('CourseListComponent', () => {
   let component: CourseListComponent;
   let fixture: ComponentFixture<CourseListComponent>;
-  let coursesService: CoursesService;
 
   beforeEach(async(() => {
-    coursesService = new CoursesService();
     TestBed.configureTestingModule({
-      imports: [RouterTestingModule],
+      imports: [RouterTestingModule, HttpClientTestingModule],
       declarations: [CourseListComponent, CourseOrderByPipe],
       providers: [
         {
           provide: CoursesService,
-          useValue: coursesService
+          useClass: CoursesService
         },
         CourseFilterPipe
       ],
@@ -53,9 +53,12 @@ describe('CourseListComponent', () => {
     }
   ));
 
-  it('should call delete course method while deleting', () => {
-    spyOn(coursesService, 'deleteCourse');
-    component.onDeleteCourse(1);
-    expect(coursesService.deleteCourse).toHaveBeenCalled();
-  });
+  it('should call delete course method while deleting', inject(
+    [CoursesService],
+    coursesService => {
+      spyOn(coursesService, 'deleteCourse').and.returnValue(of(true));
+      component.onDeleteCourse(1);
+      expect(coursesService.deleteCourse).toHaveBeenCalled();
+    }
+  ));
 });

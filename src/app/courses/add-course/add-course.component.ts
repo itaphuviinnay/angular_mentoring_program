@@ -26,10 +26,10 @@ export class AddCourseComponent implements OnInit {
     this.date = new FormControl('', Validators.required);
     this.authors = new FormControl([], Validators.required);
     this.newCourseForm = new FormGroup({
-      title: this.title,
+      name: this.title,
       description: this.description,
-      duration: this.duration,
-      creationDate: this.date,
+      length: this.duration,
+      date: this.date,
       authors: this.authors
     });
   }
@@ -38,12 +38,22 @@ export class AddCourseComponent implements OnInit {
     const formValue = this.newCourseForm.value;
     const newCourse: Course = {
       ...formValue,
-      id: this.courseService.courses$.value.length + 1,
-      creationDate: new Date(Date.parse(formValue.creationDate)),
-      authors: [formValue.authors]
+      id: this.courseService.getTotalCoursesCount() + 1,
+      authors: this.transformCourseAuthors(formValue.authors),
+      isTopRated: true
     };
-    this.courseService.createCourse(newCourse);
-    this.router.navigate(['/courses']);
+    this.courseService
+      .createCourse(newCourse)
+      .subscribe(_ => this.router.navigate(['/courses']));
+  }
+
+  transformCourseAuthors(authors: string) {
+    return authors.split(',').map((author: string, index: number) => {
+      return {
+        id: index + 1,
+        name: author.trim()
+      };
+    });
   }
 
   cancelCourseCreation() {

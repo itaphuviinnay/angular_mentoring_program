@@ -4,6 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Course } from '../../models/course';
 import { CoursesService } from '../../shared/services/courses/courses.service';
 import { DatePipe } from '@angular/common';
+import { CourseAuthorsPipe } from 'src/app/shared/pipes/course-authors';
 
 @Component({
   selector: 'app-edit-course',
@@ -12,45 +13,45 @@ import { DatePipe } from '@angular/common';
 })
 export class EditCourseComponent implements OnInit {
   courseForm: FormGroup;
-  title: FormControl;
+  name: FormControl;
   description: FormControl;
-  duration: FormControl;
+  length: FormControl;
   date: FormControl;
   authors: FormControl;
   courseId: number;
+  course: Course;
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private courseService: CoursesService,
-    private datePipe: DatePipe
+    private datePipe: DatePipe,
+    private courseAuthorsPipe: CourseAuthorsPipe
   ) {}
 
   ngOnInit() {
     this.route.params.subscribe(({ id }) => {
       this.courseId = +id;
     });
-    const course = this.courseService.getCourseById(this.courseId);
-    if (course) {
-      this.title = new FormControl(course.title, Validators.required);
-      this.description = new FormControl(
-        course.description,
-        Validators.required
-      );
-      this.duration = new FormControl(course.duration, Validators.required);
-      this.date = new FormControl(
-        this.datePipe.transform(course.creationDate, 'yyyy-MM-dd'),
-        Validators.required
-      );
-      this.authors = new FormControl(course.authors, Validators.required);
-      this.courseForm = new FormGroup({
-        title: this.title,
-        description: this.description,
-        duration: this.duration,
-        creationDate: this.date,
-        authors: this.authors
-      });
-    }
+    this.courseForm = new FormGroup({
+      name: new FormControl('', Validators.required),
+      description: new FormControl('', Validators.required),
+      length: new FormControl(0, Validators.required),
+      date: new FormControl('', Validators.required),
+      authors: new FormControl([], Validators.required)
+    });
+    this.courseService.getCourseById(this.courseId).subscribe(course => {
+      if (course) {
+        this.course = course;
+        this.courseForm.patchValue({
+          name: course.name,
+          description: course.description,
+          length: course.length,
+          date: this.datePipe.transform(course.date, 'yyyy-MM-dd'),
+          authors: this.courseAuthorsPipe.transform(course.authors)
+        });
+      }
+    });
   }
 
   submitCourse() {
@@ -58,11 +59,25 @@ export class EditCourseComponent implements OnInit {
     const newCourse: Course = {
       ...formValue,
       id: this.courseId,
-      creationDate: new Date(Date.parse(formValue.creationDate)),
-      authors: [formValue.authors]
+      authors: this.transformCourseAuthors(formValue.authors),
+      isTopRated: this.course.isTopRated
     };
-    this.courseService.updateCourse(newCourse);
-    this.router.navigate(['/courses']);
+    this.courseService
+      .updateCourse(newCourse)
+      .subscribe(_ => this.router.navigate(['/courses']));
+  }
+
+  transformCourseAuthors(authors: string) {
+    return authors.split(',').map((authorName: string, index: number) => {
+      const courseAuthor = this.course.authors.find(author => {
+        const name = `${author.name} ${author.lastName}`;
+        return name === authorName;
+      });
+      return {
+        id: courseAuthor ? courseAuthor.id : index + 1,
+        name: authorName.trim()
+      };
+    });
   }
 
   cancel() {

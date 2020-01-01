@@ -13,7 +13,7 @@ export class CourseDurationComponent implements OnInit {
 
   ngOnInit() {
     this.duration = this.formGroupDirective.control.get(
-      'duration'
+      'length'
     ) as FormControl;
   }
 }

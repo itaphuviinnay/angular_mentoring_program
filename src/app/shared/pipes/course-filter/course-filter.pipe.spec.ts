@@ -18,12 +18,15 @@ describe('CourseDurationPipe', () => {
     const expectedResult: Course[] = [
       {
         id: 1,
-        title: 'Angular Global Mentoring Program [2019Q3 IN]',
+        name: 'Angular Global Mentoring Program [2019Q3 IN]',
         description: `Angular – is one of the most famous and fast-growing frameworks in our days. It's extremely modular, lightweight, and easy to learn`,
-        duration: 80,
-        creationDate: new Date('11/21/2019'),
-        authors: ['Vinay', 'EPAM'],
-        topRated: true
+        length: 80,
+        date: new Date('11/21/2019'),
+        authors: [
+          { id: 1, name: 'Vinay', lastName: 'Itapu' },
+          { id: 2, name: 'EPAM', lastName: 'Systems' }
+        ],
+        isTopRated: true
       }
     ];
     const output = pipe.transform(searchInput, courses);

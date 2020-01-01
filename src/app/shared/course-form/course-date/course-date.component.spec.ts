@@ -15,7 +15,7 @@ describe('CourseDateComponent', () => {
 
   beforeEach(async(() => {
     formGroup = new FormGroup({
-      creationDate: new FormControl('')
+      date: new FormControl('')
     });
     formGroupDirective = new FormGroupDirective([], []);
     formGroupDirective.form = formGroup;

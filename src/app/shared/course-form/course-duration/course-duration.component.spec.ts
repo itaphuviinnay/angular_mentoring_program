@@ -16,7 +16,7 @@ describe('CourseDurationComponent', () => {
 
   beforeEach(async(() => {
     formGroup = new FormGroup({
-      duration: new FormControl('')
+      length: new FormControl('')
     });
     formGroupDirective = new FormGroupDirective([], []);
     formGroupDirective.form = formGroup;

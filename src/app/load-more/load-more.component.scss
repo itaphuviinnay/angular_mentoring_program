@@ -10,5 +10,9 @@
     align-self: center;
     font-size: 12px;
     line-height: 1.5;
+    text-decoration: underline;
+    &:hover {
+      cursor: pointer;
+    }
   }
 }

@@ -2,7 +2,6 @@ import {
   async,
   ComponentFixture,
   TestBed,
-  tick,
   fakeAsync
 } from '@angular/core/testing';
 import { CourseComponent } from './course.component';
@@ -15,12 +14,15 @@ import { CourseAuthorsPipe } from '../../shared/pipes/course-authors';
 
 const course: Course = {
   id: 1,
-  title: 'Angular Global Mentoring Program [2019Q3 IN]',
+  name: 'Angular Global Mentoring Program [2019Q3 IN]',
   description: `Angular – is one of the most famous and fast-growing frameworks in our days. It's extremely modular, lightweight, and easy to learn`,
-  duration: 60,
-  creationDate: new Date(),
-  authors: ['Vinay', 'EPAM'],
-  topRated: false
+  length: 60,
+  date: new Date(),
+  authors: [
+    { id: 1, name: 'Vinay', lastName: 'Itapu' },
+    { id: 2, name: 'EPAM', lastName: 'Systems' }
+  ],
+  isTopRated: false
 };
 
 describe('CourseComponent', () => {

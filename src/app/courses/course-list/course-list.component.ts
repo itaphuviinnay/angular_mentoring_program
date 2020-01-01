@@ -1,9 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Course } from '../../models/course';
 import { CoursesService } from '../../shared/services/courses/courses.service';
-import { CourseFilterPipe } from '../../shared/pipes/course-filter';
 import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-course-list',
@@ -11,28 +11,33 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./course-list.component.scss']
 })
 export class CourseListComponent implements OnInit, OnDestroy {
-  allCourses: Course[];
-  courseList: Course[];
-  courseSubscription: Subscription;
-  isDataEmpty: boolean;
+  courses$: Observable<Course[]>;
+  allCoursesLoaded$: Observable<boolean>;
+  isDataEmpty$: Observable<boolean>;
 
-  constructor(
-    private courseFilterPipe: CourseFilterPipe,
-    private coursesService: CoursesService,
-    private router: Router
-  ) {}
+  constructor(private coursesService: CoursesService, private router: Router) {}
 
   ngOnInit() {
-    this.courseSubscription = this.coursesService.courses$.subscribe(_ => {
-      this.allCourses = this.coursesService.getAllCourses();
-      this.courseList = this.allCourses.slice();
-    });
+    this.courses$ = this.coursesService.getCourses();
+    this.isDataEmpty$ = this.courses$.pipe(
+      map(courses => courses.length === 0)
+    );
   }
 
   onCourseSearch(searchInput: string) {
-    this.courseList = this.courseFilterPipe.transform(
-      searchInput,
-      this.allCourses
+    this.allCoursesLoaded$ = searchInput ? of(true) : of(false);
+    this.courses$ = this.coursesService.searchCourses(searchInput);
+    this.isDataEmpty$ = this.courses$.pipe(
+      map(courses => courses.length === 0)
+    );
+  }
+
+  onLoadMoreCourses() {
+    this.courses$ = this.coursesService.loadMoreCourses();
+    this.allCoursesLoaded$ = this.courses$.pipe(
+      map(
+        courses => courses.length >= this.coursesService.getTotalCoursesCount()
+      )
     );
   }
 
@@ -40,18 +45,14 @@ export class CourseListComponent implements OnInit, OnDestroy {
     this.router.navigateByUrl('/courses/new');
   }
 
-  ngOnDestroy() {
-    if (this.courseSubscription) {
-      this.courseSubscription.unsubscribe();
-    }
-  }
-
   onEditCourse(courseId: number) {
     this.router.navigateByUrl(`/courses/${courseId}`);
   }
 
   onDeleteCourse(courseId: number) {
-    this.coursesService.deleteCourse(courseId);
+    this.coursesService
+      .deleteCourse(courseId)
+      .subscribe(_ => (this.courses$ = this.coursesService.getCourses()));
   }
 
   trackCourses(index: number, course: Course): number {
@@ -59,5 +60,9 @@ export class CourseListComponent implements OnInit, OnDestroy {
       return null;
     }
     return course.id;
+  }
+
+  ngOnDestroy() {
+    this.coursesService.resetCoursesLoadedCount();
   }
 }

@@ -1,7 +1,7 @@
 <div class="header-container">
   <div class="logo">VIDEO COURSE</div>
   <div class="header-actions" *ngIf="isAuthenticated">
-    <a (click)="getUserInfo()">User Info</a>
+    <a>{{ userInfo.name.first }} {{ userInfo.name.last }}</a>
     <a (click)="logout()">Log off</a>
   </div>
 </div>
