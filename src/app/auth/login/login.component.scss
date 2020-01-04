@@ -60,6 +60,10 @@
         a {
           font-size: 12px;
           color: #5691ee;
+          text-decoration: underline;
+          &:hover {
+            cursor: pointer;
+          }
         }
       }
       button {
