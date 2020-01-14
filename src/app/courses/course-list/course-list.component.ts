@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Course } from '../../models/course';
 import { CoursesService } from '../../shared/services/courses/courses.service';
 import { Router } from '@angular/router';
@@ -10,7 +10,7 @@ import { map } from 'rxjs/operators';
   templateUrl: './course-list.component.html',
   styleUrls: ['./course-list.component.scss']
 })
-export class CourseListComponent implements OnInit, OnDestroy {
+export class CourseListComponent implements OnInit {
   courses$: Observable<Course[]>;
   allCoursesLoaded$: Observable<boolean>;
   isDataEmpty$: Observable<boolean>;
@@ -60,9 +60,5 @@ export class CourseListComponent implements OnInit, OnDestroy {
       return null;
     }
     return course.id;
-  }
-
-  ngOnDestroy() {
-    this.coursesService.resetCoursesLoadedCount();
   }
 }

@@ -1,7 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { AuthService } from 'src/app/shared/services/auth/auth.service';
-import { User } from 'src/app/models/user';
+import { LoginModel } from 'src/app/models/user';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/store/state/app.state';
+import { LoginUser, UserActions } from 'src/app/store/actions/user.actions';
+import { Actions, ofType } from '@ngrx/effects';
+import { map } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -11,9 +16,16 @@ import { User } from 'src/app/models/user';
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
 
-  constructor(private authService: AuthService) {}
+  constructor(
+    private store: Store<AppState>,
+    private action$: Actions,
+    private router: Router
+  ) {}
 
   ngOnInit() {
+    this.action$
+      .pipe(ofType(UserActions.LoginUserSuccess))
+      .subscribe(_ => this.router.navigateByUrl('courses'));
     this.loginForm = new FormGroup({
       login: new FormControl('Morales', [Validators.required]),
       password: new FormControl('id', [
@@ -25,7 +37,7 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    const userInfo: User = { ...this.loginForm.value };
-    this.authService.login(userInfo);
+    const userInfo: LoginModel = { ...this.loginForm.value };
+    this.store.dispatch(new LoginUser(userInfo));
   }
 }

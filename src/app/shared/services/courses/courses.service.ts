@@ -42,10 +42,6 @@ export class CoursesService {
     return this.totalCoursesCount;
   }
 
-  resetCoursesLoadedCount() {
-    this.coursesLoadedCount = 5;
-  }
-
   getCourseById(courseId: number): Observable<Course> {
     return this.http.get<Course>(URLS.GET_COURSE_INFO(courseId));
   }

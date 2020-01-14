@@ -5,7 +5,12 @@ import { LoginRoutingModule } from './login.routing.module';
 import { CommonModule } from '@angular/common';
 
 @NgModule({
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, LoginRoutingModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    LoginRoutingModule
+  ],
   declarations: [LoginComponent]
 })
 export class LoginModule {}

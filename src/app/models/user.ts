@@ -10,3 +10,8 @@ export interface NameModel {
   first: string;
   last: string;
 }
+
+export interface LoginModel {
+  login: string;
+  password: string;
+}

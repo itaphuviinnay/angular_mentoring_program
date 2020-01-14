@@ -4,20 +4,26 @@ import {
   HttpHandler
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { AuthService } from '../shared/services/auth/auth.service';
+import { Store } from '@ngrx/store';
+import { UserState } from '../store/state/user.state';
+import { userAuthTokenSelector } from '../store/selectors/user';
+import { switchMap } from 'rxjs/operators';
 
 @Injectable()
 export class HttpHeaderInterceptor implements HttpInterceptor {
-  constructor(private authService: AuthService) {}
+  constructor(private store: Store<UserState>) {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {
-    const token = this.authService.getAuthToken();
-    if (token) {
-      const modifiedRequest = req.clone({
-        headers: req.headers.set('Authorization', `Bearer ${token}`)
-      });
-      return next.handle(modifiedRequest);
-    }
-    return next.handle(req);
+    return this.store.select(userAuthTokenSelector).pipe(
+      switchMap(token => {
+        if (token) {
+          const modifiedRequest = req.clone({
+            headers: req.headers.set('Authorization', `Bearer ${token}`)
+          });
+          return next.handle(modifiedRequest);
+        }
+        return next.handle(req);
+      })
+    );
   }
 }
