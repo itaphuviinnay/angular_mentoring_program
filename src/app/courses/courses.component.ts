@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { CoursesService } from '../shared/services/courses/courses.service';
+import { Store } from '@ngrx/store';
+import { GetAllCourses } from '../store/actions/courses.actions';
+import { CoursesState } from '../store/state/courses.state';
 
 @Component({
   selector: 'app-courses',
@@ -7,9 +9,9 @@ import { CoursesService } from '../shared/services/courses/courses.service';
   styleUrls: ['./courses.component.scss']
 })
 export class CoursesComponent implements OnInit {
-  constructor(private coursesService: CoursesService) {}
+  constructor(private store: Store<CoursesState>) {}
 
   ngOnInit() {
-    this.coursesService.getAllCourses().subscribe();
+    this.store.dispatch(new GetAllCourses());
   }
 }

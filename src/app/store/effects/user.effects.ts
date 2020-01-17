@@ -7,7 +7,7 @@ import {
   LoginUserSuccess
 } from '../actions/user.actions';
 import { map, switchMap, tap } from 'rxjs/operators';
-import { of } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class UserEffects {
@@ -15,11 +15,28 @@ export class UserEffects {
   loginUser$ = this.actions$.pipe(
     ofType<LoginUser>(UserActions.LoginUser),
     map(action => action.payload),
-    switchMap(({ login, password }) =>
-      this.authService.login({ login, password })
-    ),
-    switchMap(user => of(new LoginUserSuccess(user)))
+    switchMap(({ login, password }) => {
+      console.log('===>', login, password);
+      return this.authService
+        .login({ login, password })
+        .pipe(
+          tap(_ => console.log('''))
+          map(user => new LoginUserSuccess(user))
+        );
+    })
   );
 
-  constructor(private actions$: Actions, private authService: AuthService) {}
+  @Effect({ dispatch: false })
+  loginUserSuccess$ = this.actions$.pipe(
+    ofType<LoginUserSuccess>(UserActions.LoginUserSuccess),
+    tap(_ => {
+      this.router.navigateByUrl('courses');
+    })
+  );
+
+  constructor(
+    private actions$: Actions,
+    private authService: AuthService,
+    private router: Router
+  ) {}
 }

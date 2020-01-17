@@ -7,7 +7,9 @@ export const userReducer = (
 ): UserState => {
   switch (action.type) {
     case UserActions.LoginUserSuccess:
-      return { user: action.user };
+      return action.user;
+    case UserActions.LogOffUser:
+      return null;
     default:
       return state;
   }

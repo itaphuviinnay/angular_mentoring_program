@@ -1,14 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../shared/services/auth/auth.service';
 import { User } from '../models/user';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { UserState } from '../store/state/user.state';
-import {
-  isUserAuthenticatedSelector,
-  userSelector
-} from '../store/selectors/user';
+import { isUserAuthenticatedSelector, userSelector } from '../store/selectors/user';
 import { combineLatest } from 'rxjs';
+import { LogOffUser } from '../store/actions/user.actions';
+import { AppState } from '../store/state/app.state';
 
 @Component({
   selector: 'app-header',
@@ -16,10 +13,10 @@ import { combineLatest } from 'rxjs';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  isAuthenticated: boolean = false;
+  isAuthenticated = false;
   userInfo: User;
 
-  constructor(private store: Store<UserState>, private router: Router) {}
+  constructor(private store: Store<AppState>, private router: Router) {}
 
   ngOnInit() {
     combineLatest([
@@ -32,6 +29,7 @@ export class HeaderComponent implements OnInit {
   }
 
   logout() {
-    this.router.navigateByUrl('');
+    this.store.dispatch(new LogOffUser());
+    // this.router.navigate(['']);
   }
 }

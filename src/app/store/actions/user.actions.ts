@@ -3,7 +3,8 @@ import { User, LoginModel } from 'src/app/models/user';
 
 export enum UserActions {
   LoginUser = '[User] Login User',
-  LoginUserSuccess = '[User] Login User Success'
+  LoginUserSuccess = '[User] Login User Success',
+  LogOffUser = '[User] LogOff User'
 }
 
 export class LoginUser implements Action {
@@ -16,4 +17,8 @@ export class LoginUserSuccess implements Action {
   constructor(public user: User) {}
 }
 
-export type UserActionTypes = LoginUser | LoginUserSuccess;
+export class LogOffUser implements Action {
+  public readonly type = UserActions.LogOffUser;
+}
+
+export type UserActionTypes = LoginUser | LoginUserSuccess | LogOffUser;
