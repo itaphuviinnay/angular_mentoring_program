@@ -3,7 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { LoginModel } from 'src/app/models/user';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/store/state/app.state';
-import { LoginUser, UserActions } from 'src/app/store/actions/user.actions';
+import { LoginUser } from 'src/app/store/actions/user.actions';
 
 @Component({
   selector: 'app-login',

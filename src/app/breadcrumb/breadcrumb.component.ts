@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { UserState } from '../store/state/user.state';
 import { isUserAuthenticatedSelector } from '../store/selectors/user';
+import { AppState } from '../store/state/app.state';
 
 @Component({
   selector: 'app-breadcrumb',
@@ -9,9 +9,9 @@ import { isUserAuthenticatedSelector } from '../store/selectors/user';
   styleUrls: ['./breadcrumb.component.scss']
 })
 export class BreadcrumbComponent implements OnInit {
-  isAuthenticated: boolean = false;
+  isAuthenticated = false;
 
-  constructor(private store: Store<UserState>) {}
+  constructor(private store: Store<AppState>) {}
 
   ngOnInit() {
     this.store

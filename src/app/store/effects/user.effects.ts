@@ -4,10 +4,12 @@ import { AuthService } from 'src/app/shared/services/auth/auth.service';
 import {
   UserActions,
   LoginUser,
-  LoginUserSuccess
+  LoginUserSuccess,
+  LogOffUser
 } from '../actions/user.actions';
-import { map, switchMap, tap } from 'rxjs/operators';
+import { map, switchMap, tap, first } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { NoopAction } from '../actions/common.actions';
 
 @Injectable()
 export class UserEffects {
@@ -16,13 +18,10 @@ export class UserEffects {
     ofType<LoginUser>(UserActions.LoginUser),
     map(action => action.payload),
     switchMap(({ login, password }) => {
-      console.log('===>', login, password);
-      return this.authService
-        .login({ login, password })
-        .pipe(
-          tap(_ => console.log('''))
-          map(user => new LoginUserSuccess(user))
-        );
+      return this.authService.login({ login, password }).pipe(
+        first(),
+        map(user => new LoginUserSuccess(user))
+      );
     })
   );
 
@@ -31,6 +30,15 @@ export class UserEffects {
     ofType<LoginUserSuccess>(UserActions.LoginUserSuccess),
     tap(_ => {
       this.router.navigateByUrl('courses');
+    })
+  );
+
+  @Effect()
+  logOffUser$ = this.actions$.pipe(
+    ofType<LogOffUser>(UserActions.LogOffUser),
+    map(_ => {
+      this.router.navigateByUrl('');
+      return new NoopAction();
     })
   );
 

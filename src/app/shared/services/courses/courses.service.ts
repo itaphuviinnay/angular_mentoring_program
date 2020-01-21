@@ -3,31 +3,35 @@ import { Course } from 'src/app/models/course';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { URLS } from '../../urls/urls';
-import { tap } from 'rxjs/operators';
+import { switchMap } from 'rxjs/operators';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/store/state/app.state';
+import {
+  totalCoursesCountSelector,
+  loadedCoursesCountSelector
+} from 'src/app/store/selectors/courses';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CoursesService {
-  private coursesLoadedCount = 5;
-  private totalCoursesCount = 0;
-
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private store: Store<AppState>) {}
 
   getAllCourses(): Observable<Course[]> {
-    return this.http
-      .get<Course[]>(URLS.ALL_COURSES)
-      .pipe(tap(courses => (this.totalCoursesCount = courses.length)));
+    return this.http.get<Course[]>(URLS.ALL_COURSES);
   }
 
   getCourses(): Observable<Course[]> {
-    return this.http.get<Course[]>(
-      URLS.COURSES_PAGING(0, this.coursesLoadedCount)
+    return this.store.select(loadedCoursesCountSelector).pipe(
+      switchMap(coursesLoadedCount => {
+        return this.http.get<Course[]>(
+          URLS.COURSES_PAGING(0, coursesLoadedCount)
+        );
+      })
     );
   }
 
   loadMoreCourses(): Observable<Course[]> {
-    this.coursesLoadedCount += 5;
     return this.getCourses();
   }
 
@@ -38,8 +42,8 @@ export class CoursesService {
     return this.getCourses();
   }
 
-  getTotalCoursesCount() {
-    return this.totalCoursesCount;
+  getTotalCoursesCount(): Observable<number> {
+    return this.store.select(totalCoursesCountSelector);
   }
 
   getCourseById(courseId: number): Observable<Course> {

@@ -1,9 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { Course } from '../../models/course';
-import { CoursesService } from '../../shared/services/courses/courses.service';
 import { Router } from '@angular/router';
-import { Observable, of } from 'rxjs';
+import { Observable, of, combineLatest } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/store/state/app.state';
+import {
+  GetCourses,
+  SearchCourses,
+  LoadMoreCourses,
+  DeleteCourse
+} from 'src/app/store/actions/courses.actions';
+import {
+  coursesSelector,
+  totalCoursesCountSelector
+} from 'src/app/store/selectors/courses';
 
 @Component({
   selector: 'app-course-list',
@@ -15,10 +26,11 @@ export class CourseListComponent implements OnInit {
   allCoursesLoaded$: Observable<boolean>;
   isDataEmpty$: Observable<boolean>;
 
-  constructor(private coursesService: CoursesService, private router: Router) {}
+  constructor(private store: Store<AppState>, private router: Router) {}
 
   ngOnInit() {
-    this.courses$ = this.coursesService.getCourses();
+    this.store.dispatch(new GetCourses());
+    this.courses$ = this.store.select(coursesSelector);
     this.isDataEmpty$ = this.courses$.pipe(
       map(courses => courses.length === 0)
     );
@@ -26,18 +38,18 @@ export class CourseListComponent implements OnInit {
 
   onCourseSearch(searchInput: string) {
     this.allCoursesLoaded$ = searchInput ? of(true) : of(false);
-    this.courses$ = this.coursesService.searchCourses(searchInput);
-    this.isDataEmpty$ = this.courses$.pipe(
-      map(courses => courses.length === 0)
-    );
+    this.store.dispatch(new SearchCourses(searchInput));
   }
 
   onLoadMoreCourses() {
-    this.courses$ = this.coursesService.loadMoreCourses();
-    this.allCoursesLoaded$ = this.courses$.pipe(
-      map(
-        courses => courses.length >= this.coursesService.getTotalCoursesCount()
-      )
+    this.store.dispatch(new LoadMoreCourses());
+    this.allCoursesLoaded$ = combineLatest([
+      this.courses$,
+      this.store.select(totalCoursesCountSelector)
+    ]).pipe(
+      map(([courses, totalCoursesCount]) => {
+        return courses.length >= totalCoursesCount;
+      })
     );
   }
 
@@ -50,9 +62,7 @@ export class CourseListComponent implements OnInit {
   }
 
   onDeleteCourse(courseId: number) {
-    this.coursesService
-      .deleteCourse(courseId)
-      .subscribe(_ => (this.courses$ = this.coursesService.getCourses()));
+    this.store.dispatch(new DeleteCourse(courseId));
   }
 
   trackCourses(index: number, course: Course): number {

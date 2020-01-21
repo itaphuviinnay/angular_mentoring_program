@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../models/user';
-import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { isUserAuthenticatedSelector, userSelector } from '../store/selectors/user';
 import { combineLatest } from 'rxjs';
@@ -16,7 +15,7 @@ export class HeaderComponent implements OnInit {
   isAuthenticated = false;
   userInfo: User;
 
-  constructor(private store: Store<AppState>, private router: Router) {}
+  constructor(private store: Store<AppState>) {}
 
   ngOnInit() {
     combineLatest([
@@ -30,6 +29,5 @@ export class HeaderComponent implements OnInit {
 
   logout() {
     this.store.dispatch(new LogOffUser());
-    // this.router.navigate(['']);
   }
 }

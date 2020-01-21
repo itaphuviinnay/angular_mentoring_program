@@ -5,13 +5,13 @@ import {
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { UserState } from '../store/state/user.state';
 import { userAuthTokenSelector } from '../store/selectors/user';
 import { switchMap } from 'rxjs/operators';
+import { AppState } from '../store/state/app.state';
 
 @Injectable()
 export class HttpHeaderInterceptor implements HttpInterceptor {
-  constructor(private store: Store<UserState>) {}
+  constructor(private store: Store<AppState>) {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {
     return this.store.select(userAuthTokenSelector).pipe(
