@@ -2,7 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Course } from '../../models/course';
-import { CoursesService } from '../../shared/services/courses/courses.service';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/store/state/app.state';
+import { totalCoursesCountSelector } from 'src/app/store/selectors/courses';
+import { CreateCourse } from 'src/app/store/actions/courses.actions';
 
 @Component({
   selector: 'app-add-course',
@@ -17,7 +20,7 @@ export class AddCourseComponent implements OnInit {
   date: FormControl;
   authors: FormControl;
 
-  constructor(private router: Router, private courseService: CoursesService) {}
+  constructor(private router: Router, private store: Store<AppState>) {}
 
   ngOnInit() {
     this.title = new FormControl('', Validators.required);
@@ -36,15 +39,15 @@ export class AddCourseComponent implements OnInit {
 
   createCourse() {
     const formValue = this.newCourseForm.value;
-    const newCourse: Course = {
-      ...formValue,
-      id: this.courseService.getTotalCoursesCount() + 1,
-      authors: this.transformCourseAuthors(formValue.authors),
-      isTopRated: true
-    };
-    this.courseService
-      .createCourse(newCourse)
-      .subscribe(_ => this.router.navigate(['/courses']));
+    this.store.select(totalCoursesCountSelector).subscribe(totalCourseCount => {
+      const newCourse: Course = {
+        ...formValue,
+        id: totalCourseCount + 1,
+        authors: this.transformCourseAuthors(formValue.authors),
+        isTopRated: true
+      };
+      this.store.dispatch(new CreateCourse(newCourse));
+    });
   }
 
   transformCourseAuthors(authors: string) {

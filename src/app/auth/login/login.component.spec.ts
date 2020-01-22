@@ -2,9 +2,11 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LoginComponent } from './login.component';
 import { RouterTestingModule } from '@angular/router/testing';
-import { AuthService } from 'src/app/shared/services/auth/auth.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideMockStore } from '@ngrx/store/testing';
+import { initialUserState } from 'src/app/store/state/user.state';
+import { initialCoursesState } from 'src/app/store/state/courses.state';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -19,7 +21,14 @@ describe('LoginComponent', () => {
         HttpClientTestingModule
       ],
       declarations: [LoginComponent],
-      providers: [AuthService]
+      providers: [
+        provideMockStore({
+          initialState: {
+            user: initialUserState,
+            courses: initialCoursesState
+          }
+        })
+      ]
     }).compileComponents();
   }));
 

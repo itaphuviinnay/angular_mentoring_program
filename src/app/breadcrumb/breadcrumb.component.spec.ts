@@ -1,9 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BreadcrumbComponent } from './breadcrumb.component';
-import { AuthService } from '../shared/services/auth/auth.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { provideMockStore } from '@ngrx/store/testing';
+import { initialUserState } from '../store/state/user.state';
+import { initialCoursesState } from '../store/state/courses.state';
 
 describe('BreadcrumbComponent', () => {
   let component: BreadcrumbComponent;
@@ -13,7 +15,14 @@ describe('BreadcrumbComponent', () => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule, RouterTestingModule],
       declarations: [BreadcrumbComponent],
-      providers: [AuthService]
+      providers: [
+        provideMockStore({
+          initialState: {
+            user: initialUserState,
+            courses: initialCoursesState
+          }
+        })
+      ]
     }).compileComponents();
   }));
 

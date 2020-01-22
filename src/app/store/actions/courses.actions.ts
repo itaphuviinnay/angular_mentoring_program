@@ -78,6 +78,7 @@ export class CreateCourseSuccess implements Action {
 
 export class EditCourse implements Action {
   public readonly type = CoursesActions.EditCourse;
+  constructor(public course: Course) {}
 }
 
 export class EditCourseSuccess implements Action {

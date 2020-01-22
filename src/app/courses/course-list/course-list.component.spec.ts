@@ -14,6 +14,9 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { Router } from '@angular/router';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { of } from 'rxjs';
+import { provideMockStore } from '@ngrx/store/testing';
+import { initialUserState } from 'src/app/store/state/user.state';
+import { initialCoursesState } from 'src/app/store/state/courses.state';
 
 describe('CourseListComponent', () => {
   let component: CourseListComponent;
@@ -28,7 +31,13 @@ describe('CourseListComponent', () => {
           provide: CoursesService,
           useClass: CoursesService
         },
-        CourseFilterPipe
+        CourseFilterPipe,
+        provideMockStore({
+          initialState: {
+            user: initialUserState,
+            courses: initialCoursesState
+          }
+        })
       ],
       schemas: [NO_ERRORS_SCHEMA]
     }).compileComponents();
@@ -50,15 +59,6 @@ describe('CourseListComponent', () => {
       spyOn(router, 'navigateByUrl');
       component.onEditCourse(1);
       expect(router.navigateByUrl).toHaveBeenCalledWith('/courses/1');
-    }
-  ));
-
-  it('should call delete course method while deleting', inject(
-    [CoursesService],
-    coursesService => {
-      spyOn(coursesService, 'deleteCourse').and.returnValue(of(true));
-      component.onDeleteCourse(1);
-      expect(coursesService.deleteCourse).toHaveBeenCalled();
     }
   ));
 });

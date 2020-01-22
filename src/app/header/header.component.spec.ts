@@ -1,9 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HeaderComponent } from './header.component';
-import { AuthService } from '../shared/services/auth/auth.service';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideMockStore } from '@ngrx/store/testing';
+import { initialUserState } from '../store/state/user.state';
+import { initialCoursesState } from '../store/state/courses.state';
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
@@ -13,7 +15,14 @@ describe('HeaderComponent', () => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule, HttpClientTestingModule],
       declarations: [HeaderComponent],
-      providers: [AuthService]
+      providers: [
+        provideMockStore({
+          initialState: {
+            user: initialUserState,
+            courses: initialCoursesState
+          }
+        })
+      ]
     }).compileComponents();
   }));
 

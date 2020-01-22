@@ -11,9 +11,14 @@ import {
   LoadMoreCourses,
   SearchCoursesSuccess,
   DeleteCourse,
-  DeleteCourseSuccess
+  DeleteCourseSuccess,
+  CreateCourse,
+  CreateCourseSuccess,
+  EditCourse,
+  EditCourseSuccess
 } from '../actions/courses.actions';
-import { map, switchMap, first } from 'rxjs/operators';
+import { map, switchMap, first, tap } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class CoursesEffects {
@@ -30,10 +35,7 @@ export class CoursesEffects {
 
   @Effect()
   getCourses$ = this.actions$.pipe(
-    ofType<GetCourses>(
-      CoursesActions.GetCourses,
-      CoursesActions.DeleteCourseSuccess
-    ),
+    ofType<GetCourses>(CoursesActions.GetCourses),
     switchMap(_ =>
       this.coursesService.getCourses().pipe(
         first(),
@@ -66,6 +68,42 @@ export class CoursesEffects {
   );
 
   @Effect()
+  createCourse$ = this.actions$.pipe(
+    ofType<CreateCourse>(CoursesActions.CreateCourse),
+    map(action => action.course),
+    switchMap(course =>
+      this.coursesService.createCourse(course).pipe(
+        first(),
+        map(_ => new CreateCourseSuccess())
+      )
+    )
+  );
+
+  @Effect({ dispatch: false })
+  createCourseSuccess$ = this.actions$.pipe(
+    ofType<CreateCourseSuccess>(CoursesActions.CreateCourseSuccess),
+    tap(_ => this.router.navigateByUrl('courses'))
+  );
+
+  @Effect()
+  editCourse$ = this.actions$.pipe(
+    ofType<EditCourse>(CoursesActions.EditCourse),
+    map(action => action.course),
+    switchMap(course =>
+      this.coursesService.updateCourse(course).pipe(
+        first(),
+        map(_ => new EditCourseSuccess())
+      )
+    )
+  );
+
+  @Effect({ dispatch: false })
+  editCourseSuccess$ = this.actions$.pipe(
+    ofType<EditCourseSuccess>(CoursesActions.EditCourseSuccess),
+    tap(_ => this.router.navigateByUrl('courses'))
+  );
+
+  @Effect()
   deleteCourse$ = this.actions$.pipe(
     ofType<DeleteCourse>(CoursesActions.DeleteCourse),
     map(action => action.courseId),
@@ -77,8 +115,15 @@ export class CoursesEffects {
     )
   );
 
+  @Effect()
+  deleteCourseSuccess$ = this.actions$.pipe(
+    ofType<DeleteCourseSuccess>(CoursesActions.DeleteCourseSuccess),
+    map(_ => new GetCourses())
+  );
+
   constructor(
     private actions$: Actions,
-    private coursesService: CoursesService
+    private coursesService: CoursesService,
+    private router: Router
   ) {}
 }

@@ -5,6 +5,13 @@ import { Course } from '../../models/course';
 import { CoursesService } from '../../shared/services/courses/courses.service';
 import { DatePipe } from '@angular/common';
 import { CourseAuthorsPipe } from 'src/app/shared/pipes/course-authors';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/store/state/app.state';
+import {
+  GetCourseDetails,
+  EditCourse
+} from 'src/app/store/actions/courses.actions';
+import { courseDetailsSelector } from 'src/app/store/selectors/courses';
 
 @Component({
   selector: 'app-edit-course',
@@ -24,7 +31,7 @@ export class EditCourseComponent implements OnInit {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private courseService: CoursesService,
+    private store: Store<AppState>,
     private datePipe: DatePipe,
     private courseAuthorsPipe: CourseAuthorsPipe
   ) {}
@@ -33,6 +40,7 @@ export class EditCourseComponent implements OnInit {
     this.route.params.subscribe(({ id }) => {
       this.courseId = +id;
     });
+    this.store.dispatch(new GetCourseDetails(this.courseId));
     this.courseForm = new FormGroup({
       name: new FormControl('', Validators.required),
       description: new FormControl('', Validators.required),
@@ -40,18 +48,20 @@ export class EditCourseComponent implements OnInit {
       date: new FormControl('', Validators.required),
       authors: new FormControl([], Validators.required)
     });
-    this.courseService.getCourseById(this.courseId).subscribe(course => {
-      if (course) {
-        this.course = course;
-        this.courseForm.patchValue({
-          name: course.name,
-          description: course.description,
-          length: course.length,
-          date: this.datePipe.transform(course.date, 'yyyy-MM-dd'),
-          authors: this.courseAuthorsPipe.transform(course.authors)
-        });
-      }
-    });
+    this.store
+      .select(courseDetailsSelector(this.courseId))
+      .subscribe(course => {
+        if (course) {
+          this.course = course;
+          this.courseForm.patchValue({
+            name: course.name,
+            description: course.description,
+            length: course.length,
+            date: this.datePipe.transform(course.date, 'yyyy-MM-dd'),
+            authors: this.courseAuthorsPipe.transform(course.authors)
+          });
+        }
+      });
   }
 
   submitCourse() {
@@ -62,9 +72,7 @@ export class EditCourseComponent implements OnInit {
       authors: this.transformCourseAuthors(formValue.authors),
       isTopRated: this.course.isTopRated
     };
-    this.courseService
-      .updateCourse(newCourse)
-      .subscribe(_ => this.router.navigate(['/courses']));
+    this.store.dispatch(new EditCourse(newCourse));
   }
 
   transformCourseAuthors(authors: string) {

@@ -14,6 +14,9 @@ import { CoursesService } from '../../shared/services/courses/courses.service';
 import { DatePipe } from '@angular/common';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { CourseAuthorsPipe } from 'src/app/shared/pipes/course-authors';
+import { provideMockStore } from '@ngrx/store/testing';
+import { initialUserState } from 'src/app/store/state/user.state';
+import { initialCoursesState } from 'src/app/store/state/courses.state';
 
 describe('EditCourseComponent', () => {
   let component: EditCourseComponent;
@@ -28,7 +31,17 @@ describe('EditCourseComponent', () => {
         HttpClientTestingModule
       ],
       declarations: [EditCourseComponent],
-      providers: [CoursesService, DatePipe, CourseAuthorsPipe],
+      providers: [
+        CoursesService,
+        DatePipe,
+        CourseAuthorsPipe,
+        provideMockStore({
+          initialState: {
+            user: initialUserState,
+            courses: initialCoursesState
+          }
+        })
+      ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     }).compileComponents();
   }));

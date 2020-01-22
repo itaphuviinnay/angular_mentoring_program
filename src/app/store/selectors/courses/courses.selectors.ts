@@ -10,6 +10,11 @@ export const coursesSelector = createSelector(
   courseState => courseState.courses
 );
 
+export const courseDetailsSelector = (courseId: number) =>
+  createSelector(coursesSelector, courses =>
+    courses.find(course => course.id === courseId)
+  );
+
 export const totalCoursesCountSelector = createSelector(
   coursesFeatureSelector,
   courseState => courseState.totalCoursesCount
