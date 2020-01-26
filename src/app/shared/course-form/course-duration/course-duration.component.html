@@ -1,2 +1,16 @@
-<input type="number" [formControl]="duration" placeholder="minutes" min="0" />
-<span>{{ duration.value | courseDuration }}</span>
+<div class="fields">
+  <div class="field-label">
+    <label>Title:</label>
+    <label>*required</label>
+  </div>
+  <input
+    type="number"
+    [formControl]="duration"
+    placeholder="minutes"
+    min="0"
+    [ngStyle]="{
+      'border-color': duration.touched && duration.errors ? 'red' : ''
+    }"
+  />
+  <span>{{ duration.value | courseDuration }}</span>
+</div>

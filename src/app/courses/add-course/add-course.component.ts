@@ -43,19 +43,9 @@ export class AddCourseComponent implements OnInit {
       const newCourse: Course = {
         ...formValue,
         id: totalCourseCount + 1,
-        authors: this.transformCourseAuthors(formValue.authors),
         isTopRated: true
       };
       this.store.dispatch(new CreateCourse(newCourse));
-    });
-  }
-
-  transformCourseAuthors(authors: string) {
-    return authors.split(',').map((author: string, index: number) => {
-      return {
-        id: index + 1,
-        name: author.trim()
-      };
     });
   }
 

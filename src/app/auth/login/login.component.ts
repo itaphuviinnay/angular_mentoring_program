@@ -12,17 +12,21 @@ import { LoginUser } from 'src/app/store/actions/user.actions';
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
+  login: FormControl;
+  password: FormControl;
 
   constructor(private store: Store<AppState>) {}
 
   ngOnInit() {
+    this.login = new FormControl('Morales', [Validators.required]);
+    this.password = new FormControl('id', [
+      Validators.required,
+      Validators.minLength(2),
+      Validators.maxLength(10)
+    ]);
     this.loginForm = new FormGroup({
-      login: new FormControl('Morales', [Validators.required]),
-      password: new FormControl('id', [
-        Validators.required,
-        Validators.minLength(2),
-        Validators.maxLength(10)
-      ])
+      login: this.login,
+      password: this.password
     });
   }
 

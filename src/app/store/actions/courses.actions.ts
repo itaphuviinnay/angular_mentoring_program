@@ -1,9 +1,11 @@
 import { Action } from '@ngrx/store';
-import { Course } from 'src/app/models/course';
+import { Course, CourseAuthor } from 'src/app/models/course';
 
 export enum CoursesActions {
   GetAllCourses = '[Courses] Get All Courses',
   GetAllCoursesSuccess = '[Courses] Get All Courses Success',
+  GetAllCourseAuthors = '[Authors] Get All Course Authors',
+  GetAllCourseAuthorsSuccess = '[Authors] Get All Course Authors Success',
   GetCourses = '[Courses] Get Courses',
   GetCoursesSuccess = '[Courses] Get Courses Success',
   SearchCourses = '[Courses] Search Courses',
@@ -27,6 +29,15 @@ export class GetAllCourses implements Action {
 export class GetAllCoursesSuccess implements Action {
   public readonly type = CoursesActions.GetAllCoursesSuccess;
   constructor(public courses: Course[]) {}
+}
+
+export class GetAllCourseAuthors implements Action {
+  public readonly type = CoursesActions.GetAllCourseAuthors;
+}
+
+export class GetAllCourseAuthorSuccess implements Action {
+  public readonly type = CoursesActions.GetAllCourseAuthorsSuccess;
+  constructor(public authors: CourseAuthor[]) {}
 }
 
 export class GetCourses implements Action {
@@ -97,6 +108,8 @@ export class DeleteCourseSuccess implements Action {
 export type CoursesActionTypes =
   | GetAllCourses
   | GetAllCoursesSuccess
+  | GetAllCourseAuthors
+  | GetAllCourseAuthorSuccess
   | GetCourses
   | GetCoursesSuccess
   | SearchCourses

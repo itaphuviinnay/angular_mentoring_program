@@ -42,7 +42,7 @@ describe('AddCourseComponent', () => {
 
   beforeEach(() => {
     const formGroup = new FormGroup({
-      title: new FormControl('Angular', Validators.required),
+      name: new FormControl('Angular', Validators.required),
       description: new FormControl('Some description', Validators.required),
       duration: new FormControl(120, Validators.required),
       creationDate: new FormControl('03/03/1990', Validators.required),

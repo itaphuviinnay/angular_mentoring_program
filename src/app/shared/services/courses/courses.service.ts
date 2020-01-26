@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Course } from 'src/app/models/course';
+import { Course, CourseAuthor } from 'src/app/models/course';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { URLS } from '../../urls/urls';
@@ -19,6 +19,10 @@ export class CoursesService {
 
   getAllCourses(): Observable<Course[]> {
     return this.http.get<Course[]>(URLS.ALL_COURSES);
+  }
+
+  getAllCourseAuthors(): Observable<CourseAuthor[]> {
+    return this.http.get<CourseAuthor[]>(URLS.ALL_COURSE_AUTHORS);
   }
 
   getCourses(): Observable<Course[]> {

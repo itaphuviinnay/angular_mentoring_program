@@ -3,6 +3,7 @@ const LOGIN = `${BASE_URL}/auth/login`;
 const USER_INFO = `${BASE_URL}/auth/userinfo`;
 const GET_COURSE_AUTHORS = `${BASE_URL}/authors`;
 const ALL_COURSES = `${BASE_URL}/courses`;
+const ALL_COURSE_AUTHORS = `${BASE_URL}/authors`;
 const COURSES_PAGING = (start = 0, count = 5) =>
   `${ALL_COURSES}?start=${start}&count=${count}`;
 const COURSES_SEARCH = (textFragment: string) =>
@@ -17,6 +18,7 @@ export const URLS = {
   USER_INFO,
   GET_COURSE_AUTHORS,
   ALL_COURSES,
+  ALL_COURSE_AUTHORS,
   COURSES_SEARCH,
   COURSES_PAGING,
   GET_COURSE_INFO,

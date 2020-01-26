@@ -2,9 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Course } from '../../models/course';
-import { CoursesService } from '../../shared/services/courses/courses.service';
 import { DatePipe } from '@angular/common';
-import { CourseAuthorsPipe } from 'src/app/shared/pipes/course-authors';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/store/state/app.state';
 import {
@@ -32,8 +30,7 @@ export class EditCourseComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private store: Store<AppState>,
-    private datePipe: DatePipe,
-    private courseAuthorsPipe: CourseAuthorsPipe
+    private datePipe: DatePipe
   ) {}
 
   ngOnInit() {
@@ -58,7 +55,7 @@ export class EditCourseComponent implements OnInit {
             description: course.description,
             length: course.length,
             date: this.datePipe.transform(course.date, 'yyyy-MM-dd'),
-            authors: this.courseAuthorsPipe.transform(course.authors)
+            authors: course.authors
           });
         }
       });
@@ -69,23 +66,9 @@ export class EditCourseComponent implements OnInit {
     const newCourse: Course = {
       ...formValue,
       id: this.courseId,
-      authors: this.transformCourseAuthors(formValue.authors),
       isTopRated: this.course.isTopRated
     };
     this.store.dispatch(new EditCourse(newCourse));
-  }
-
-  transformCourseAuthors(authors: string) {
-    return authors.split(',').map((authorName: string, index: number) => {
-      const courseAuthor = this.course.authors.find(author => {
-        const name = `${author.name} ${author.lastName}`;
-        return name === authorName;
-      });
-      return {
-        id: courseAuthor ? courseAuthor.id : index + 1,
-        name: authorName.trim()
-      };
-    });
   }
 
   cancel() {

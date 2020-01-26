@@ -19,8 +19,8 @@ const course: Course = {
   length: 60,
   date: new Date(),
   authors: [
-    { id: 1, name: 'Vinay', lastName: 'Itapu' },
-    { id: 2, name: 'EPAM', lastName: 'Systems' }
+    { id: 1, name: 'Vinay' },
+    { id: 2, name: 'EPAM' }
   ],
   isTopRated: false
 };

@@ -1,10 +1,31 @@
-input {
-  box-sizing: border-box;
-  width: 150px;
-  height: 36px;
-  padding: 5px 8px;
-  border-radius: 3px;
-  border: solid 1px #d9dbe3;
-  background-color: #ffffff;
-  margin: 0 20px 10px 0;
+.fields {
+  .field-label {
+    display: flex;
+    margin-top: 15px;
+    &:first-child {
+      margin-top: 10px;
+    }
+    label {
+      display: flex;
+      flex: 1;
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 15px;
+      &:last-child {
+        font-size: 12px;
+        font-weight: normal;
+        justify-content: flex-end;
+      }
+    }
+  }
+  input {
+    box-sizing: border-box;
+    width: 150px;
+    height: 36px;
+    padding: 5px 8px;
+    border-radius: 3px;
+    border: solid 1px #d9dbe3;
+    background-color: #ffffff;
+    margin: 0 20px 10px 0;
+  }
 }

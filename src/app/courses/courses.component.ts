@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { GetAllCourses } from '../store/actions/courses.actions';
+import {
+  GetAllCourses,
+  GetAllCourseAuthors
+} from '../store/actions/courses.actions';
 import { CoursesState } from '../store/state/courses.state';
 
 @Component({
@@ -13,5 +16,6 @@ export class CoursesComponent implements OnInit {
 
   ngOnInit() {
     this.store.dispatch(new GetAllCourses());
+    this.store.dispatch(new GetAllCourseAuthors());
   }
 }

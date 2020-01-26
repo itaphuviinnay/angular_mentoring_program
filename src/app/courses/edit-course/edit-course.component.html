@@ -3,45 +3,11 @@
     <div class="title">
       <span>Edit Course</span>
     </div>
-    <div class="fields">
-      <div class="field-label">
-        <label>Title:</label>
-        <label>*required</label>
-      </div>
-      <input
-        type="text"
-        formControlName="name"
-        placeholder="Enter course title"
-      />
-    </div>
-    <div class="fields">
-      <div class="field-label">
-        <label>Description:</label>
-        <label>*required</label>
-      </div>
-      <app-course-description></app-course-description>
-    </div>
-    <div class="fields">
-      <div class="field-label">
-        <label>Duration:</label>
-        <label>*required</label>
-      </div>
-      <app-course-duration></app-course-duration>
-    </div>
-    <div class="fields">
-      <div class="field-label">
-        <label>Date:</label>
-        <label>*required</label>
-      </div>
-      <app-course-date></app-course-date>
-    </div>
-    <div class="fields">
-      <div class="field-label">
-        <label>Authors:</label>
-        <label>*required</label>
-      </div>
-      <app-course-authors></app-course-authors>
-    </div>
+    <app-course-title></app-course-title>
+    <app-course-description></app-course-description>
+    <app-course-date></app-course-date>
+    <app-course-duration></app-course-duration>
+    <app-course-authors></app-course-authors>
     <div class="bottom-row">
       <button type="button" (click)="cancel()">Cancel</button>
       <button

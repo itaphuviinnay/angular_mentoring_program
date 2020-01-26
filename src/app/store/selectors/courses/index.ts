@@ -1,5 +1,6 @@
 export {
   coursesSelector,
+  courseAuthorsSelector,
   courseDetailsSelector,
   totalCoursesCountSelector,
   loadedCoursesCountSelector

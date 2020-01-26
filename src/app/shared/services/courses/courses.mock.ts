@@ -8,8 +8,8 @@ export const courses: Course[] = [
     length: 80,
     date: new Date('11/21/2019'),
     authors: [
-      { id: 1, name: 'Vinay', lastName: 'Itapu' },
-      { id: 2, name: 'EPAM', lastName: 'Systems' }
+      { id: 1, name: 'Vinay' },
+      { id: 2, name: 'EPAM' }
     ],
     isTopRated: true
   },
@@ -20,8 +20,8 @@ export const courses: Course[] = [
     length: 90,
     date: new Date('11/05/2019'),
     authors: [
-      { id: 1, name: 'Vinay', lastName: 'Itapu' },
-      { id: 2, name: 'EPAM', lastName: 'Systems' }
+      { id: 1, name: 'Vinay' },
+      { id: 2, name: 'EPAM' }
     ],
     isTopRated: false
   },
@@ -32,8 +32,8 @@ export const courses: Course[] = [
     length: 105,
     date: new Date('10/23/2019'),
     authors: [
-      { id: 1, name: 'Vinay', lastName: 'Itapu' },
-      { id: 2, name: 'EPAM', lastName: 'Systems' }
+      { id: 1, name: 'Vinay' },
+      { id: 2, name: 'EPAM' }
     ],
     isTopRated: true
   }

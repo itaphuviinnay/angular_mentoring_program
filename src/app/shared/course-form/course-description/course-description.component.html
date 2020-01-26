@@ -1,5 +1,15 @@
-<textarea
-  type="text"
-  [formControl]="description"
-  placeholder="Add description"
-></textarea>
+<div class="fields">
+  <div class="field-label">
+    <label>Description:</label>
+    <label>*required</label>
+  </div>
+  <textarea
+    type="text"
+    [formControl]="description"
+    placeholder="Add description"
+    maxlength="500"
+    [ngStyle]="{
+      'border-color': description.touched && description.errors ? 'red' : ''
+    }"
+  ></textarea>
+</div>

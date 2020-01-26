@@ -12,6 +12,11 @@ export const coursesReducer = (
         totalCoursesCount: action.courses.length,
         coursesLoadedCount: 5
       };
+    case CoursesActions.GetAllCourseAuthorsSuccess:
+      return {
+        ...state,
+        courseAuthors: action.authors
+      };
     case CoursesActions.GetCoursesSuccess:
     case CoursesActions.SearchCoursesSuccess:
       return {

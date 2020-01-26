@@ -13,7 +13,6 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CoursesService } from '../../shared/services/courses/courses.service';
 import { DatePipe } from '@angular/common';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { CourseAuthorsPipe } from 'src/app/shared/pipes/course-authors';
 import { provideMockStore } from '@ngrx/store/testing';
 import { initialUserState } from 'src/app/store/state/user.state';
 import { initialCoursesState } from 'src/app/store/state/courses.state';
@@ -34,7 +33,6 @@ describe('EditCourseComponent', () => {
       providers: [
         CoursesService,
         DatePipe,
-        CourseAuthorsPipe,
         provideMockStore({
           initialState: {
             user: initialUserState,
