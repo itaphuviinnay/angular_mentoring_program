@@ -4,6 +4,7 @@ import { EditCourseComponent } from './edit-course.component';
 import { RouterModule } from '@angular/router';
 import { CourseFormModule } from 'src/app/shared/course-form/course-form.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   imports: [
@@ -11,6 +12,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     ReactiveFormsModule,
     CourseFormModule,
+    TranslateModule,
     RouterModule.forChild([
       {
         path: '',

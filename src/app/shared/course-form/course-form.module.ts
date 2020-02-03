@@ -8,6 +8,7 @@ import { CourseDateComponent } from './course-date/course-date.component';
 import { CourseDurationComponent } from './course-duration/course-duration.component';
 import { CourseAuthorsComponent } from './course-authors/course-authors.component';
 import { CourseTitleComponent } from './course-title/course-title.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { CourseTitleComponent } from './course-title/course-title.component';
     FormsModule,
     ReactiveFormsModule,
     SharedPipesModule,
-    NgMultiSelectDropDownModule.forRoot()
+    NgMultiSelectDropDownModule.forRoot(),
+    TranslateModule
   ],
   declarations: [
     CourseTitleComponent,

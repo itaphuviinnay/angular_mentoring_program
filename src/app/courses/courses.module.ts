@@ -11,13 +11,15 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { CoursesRoutingModule } from './courses.routing.module';
 import { BreadcrumbComponent } from '../breadcrumb/breadcrumb.component';
 import { SharedPipesModule } from '../shared/pipes/shared-pipes.module';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   imports: [
     CommonModule,
     ReactiveFormsModule,
     CoursesRoutingModule,
-    SharedPipesModule
+    SharedPipesModule,
+    TranslateModule
   ],
   declarations: [
     BreadcrumbComponent,

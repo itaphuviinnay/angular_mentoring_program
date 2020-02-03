@@ -1,0 +1,47 @@
+{
+  "PAGES": {
+    "HEADER": {
+      "SIGN_IN": "Bejelentkezés",
+      "SIGN_OUT": "Kijelentkezés"
+    },
+    "BREADCRUMB": {
+      "COURSES": "Kurzusok"
+    },
+    "COURSES_PAGE": {
+      "COURSES_LIST": {
+        "ADD_COURSE": "Kurzus hozzáadása",
+        "LOAD_MORE": "Továbbiak betöltése",
+        "NO_DATA": "Nincs adat. Nyugodtan adj hozzá kurzust!"
+      },
+      "COURSES_ITEM": {
+        "EDIT": "Szerkesztés",
+        "DELETE": "Törlés"
+      }
+    },
+    "ADD_COURSE_PAGE": {
+      "TITLE": "Cím",
+      "DESCRIPTION": "Leírás",
+      "DATE": "Dátum",
+      "DURATION": "Hossz",
+      "AUTHORS": "Készítők"
+    },
+    "FOOTER": {
+      "COPYRIGHT": "Szerzői joggal védett © Videocourses. Minden jog fenntartva."
+    },
+    "LOGIN_PAGE": {
+      "USERNAME": "Felhasználónév",
+      "PASSWORD": "Jelszó",
+      "WRONG_LOGIN": "Hibás felhasználónév vagy jelszó",
+      "FORGOT_PASSWORD": "Elfelejtetted a jelszavad?"
+    },
+    "ERROR": {
+      "404": "404 - Az oldal nem található"
+    },
+    "SHARED": {
+      "SAVE": "Mentés",
+      "CANCEL": "Kilépés",
+      "LOGIN": "Belépés",
+      "REQUIRED": "*Kötelező"
+    }
+  }
+}

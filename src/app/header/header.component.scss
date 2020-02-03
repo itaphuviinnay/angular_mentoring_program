@@ -19,7 +19,7 @@
     a {
       color: #fff;
       cursor: pointer;
-      &:last-child {
+      &:nth-child(n + 1) {
         margin-left: 15px;
       }
     }

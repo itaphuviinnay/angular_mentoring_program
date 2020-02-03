@@ -1,0 +1,9 @@
+<select
+  class="language-dropdown"
+  [(ngModel)]="selectedLanguage"
+  (change)="selectLanguage(selectedLanguage)"
+  placeholder="Select language"
+>
+  <option value="en">{{ 'I18N.LANGUAGES_LIST.ENGLISH' | translate }}</option>
+  <option value="hu">{{ 'I18N.LANGUAGES_LIST.HUNGARIAN' | translate }}</option>
+</select>
