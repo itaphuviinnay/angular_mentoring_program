@@ -1,47 +1,52 @@
 {
   "PAGES": {
+    "LOGIN": {
+      "USERNAME": "Username",
+      "PASSWORD": "Password",
+      "FORGOT_PASSWORD": "Forgot password"
+    },
     "HEADER": {
-      "SIGN_IN": "Bejelentkezés",
-      "SIGN_OUT": "Kijelentkezés"
-    },
-    "BREADCRUMB": {
-      "COURSES": "Kurzusok"
-    },
-    "COURSES_PAGE": {
-      "COURSES_LIST": {
-        "ADD_COURSE": "Kurzus hozzáadása",
-        "LOAD_MORE": "Továbbiak betöltése",
-        "NO_DATA": "Nincs adat. Nyugodtan adj hozzá kurzust!"
-      },
-      "COURSES_ITEM": {
-        "EDIT": "Szerkesztés",
-        "DELETE": "Törlés"
-      }
-    },
-    "ADD_COURSE_PAGE": {
-      "TITLE": "Cím",
-      "DESCRIPTION": "Leírás",
-      "DATE": "Dátum",
-      "DURATION": "Hossz",
-      "AUTHORS": "Készítők"
+      "TITLE": "VIDEO COURSE",
+      "LOG_OFF": "Log Off"
     },
     "FOOTER": {
-      "COPYRIGHT": "Szerzői joggal védett © Videocourses. Minden jog fenntartva."
+      "COPYRIGHT": "Copyright © Videocourses. All rights reserved."
     },
-    "LOGIN_PAGE": {
-      "USERNAME": "Felhasználónév",
-      "PASSWORD": "Jelszó",
-      "WRONG_LOGIN": "Hibás felhasználónév vagy jelszó",
-      "FORGOT_PASSWORD": "Elfelejtetted a jelszavad?"
+    "BREADCRUMB": {
+      "COURSES": "Courses"
+    },
+    "COURSES": {
+      "COURSES_LIST": {
+        "ADD_COURSE": "Add course",
+        "LOAD_MORE": "Load More",
+        "NO_DATA": "No data. Feel free to add new course!"
+      },
+      "COURSES_ITEM": {
+        "EDIT": "Edit",
+        "DELETE": "Delete"
+      }
+    },
+    "ADD_COURSE": {
+      "TITLE": "Title",
+      "DESCRIPTION": "Description",
+      "DATE": "Date",
+      "DURATION": "Duration",
+      "AUTHORS": "Authors"
     },
     "ERROR": {
-      "404": "404 - Az oldal nem található"
+      "404": "404 - Page Not Found"
     },
     "SHARED": {
-      "SAVE": "Mentés",
-      "CANCEL": "Kilépés",
-      "LOGIN": "Belépés",
-      "REQUIRED": "*Kötelező"
+      "SAVE": "Save",
+      "CANCEL": "Cancel",
+      "LOGIN": "Login",
+      "REQUIRED": "*Required"
+    }
+  },
+  "I18N": {
+    "LANGUAGES_LIST": {
+      "ENGLISH": "English",
+      "HUNGARIAN": "Hungarian"
     }
   }
 }

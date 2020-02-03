@@ -1,13 +1,21 @@
 {
   "PAGES": {
+    "LOGIN": {
+      "USERNAME": "Username",
+      "PASSWORD": "Password",
+      "FORGOT_PASSWORD": "Forgot password"
+    },
     "HEADER": {
-      "SIGN_IN": "Sign In",
-      "SIGN_OUT": "Sign out"
+      "TITLE": "VIDEO COURSE",
+      "LOG_OFF": "Log Off"
+    },
+    "FOOTER": {
+      "COPYRIGHT": "Copyright © Videocourses. All rights reserved."
     },
     "BREADCRUMB": {
       "COURSES": "Courses"
     },
-    "COURSES_PAGE": {
+    "COURSES": {
       "COURSES_LIST": {
         "ADD_COURSE": "Add course",
         "LOAD_MORE": "Load More",
@@ -18,21 +26,12 @@
         "DELETE": "Delete"
       }
     },
-    "ADD_COURSE_PAGE": {
+    "ADD_COURSE": {
       "TITLE": "Title",
       "DESCRIPTION": "Description",
       "DATE": "Date",
       "DURATION": "Duration",
       "AUTHORS": "Authors"
-    },
-    "FOOTER": {
-      "COPYRIGHT": "Copyright © Videocourses. All rights reserved."
-    },
-    "LOGIN_PAGE": {
-      "USERNAME": "Username",
-      "PASSWORD": "Password",
-      "WRONG_LOGIN": "Wrong Username or Password",
-      "FORGOT_PASSWORD": "Forgot password"
     },
     "ERROR": {
       "404": "404 - Page Not Found"

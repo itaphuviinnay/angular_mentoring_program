@@ -1,8 +1,9 @@
++
 <div class="header-container">
-  <div class="logo">VIDEO COURSE</div>
+  <div class="logo">{{ 'PAGES.HEADER.TITLE' | translate }}</div>
   <div class="header-actions" *ngIf="isAuthenticated">
     <app-languages></app-languages>
     <a>{{ userInfo.name.first }} {{ userInfo.name.last }}</a>
-    <a (click)="logout()">Log off</a>
+    <a (click)="logout()">{{ 'PAGES.HEADER.LOG_OFF' | translate }}</a>
   </div>
 </div>
