@@ -1,0 +1,54 @@
+{
+  "PAGES": {
+    "LOGIN": {
+      "LOGIN_TXT": "Login",
+      "USERNAME": "User Id:",
+      "USERNAME_HINT": "Enter user id",
+      "PASSWORD": "Password",
+      "PASSWORD_HINT": "Enter password (4-10 characters)",
+      "FORGOT_PASSWORD": "Forgot password?"
+    },
+    "HEADER": {
+      "TITLE": "VIDEO COURSE",
+      "LOG_OFF": "Log Off"
+    },
+    "FOOTER": {
+      "COPYRIGHT": "Copyright © Videocourses. All rights reserved."
+    },
+    "BREADCRUMB": {
+      "COURSES": "Courses"
+    },
+    "COURSES": {
+      "COURSES_LIST": {
+        "ADD_COURSE": "Add course",
+        "LOAD_MORE": "Load More",
+        "NO_DATA": "No data. Feel free to add new course!"
+      },
+      "COURSES_ITEM": {
+        "EDIT": "Edit",
+        "DELETE": "Delete"
+      }
+    },
+    "ADD_COURSE": {
+      "TITLE": "Title",
+      "DESCRIPTION": "Description",
+      "DATE": "Date",
+      "DURATION": "Duration",
+      "AUTHORS": "Authors"
+    },
+    "ERROR": {
+      "404": "404 - Page Not Found"
+    },
+    "SHARED": {
+      "SAVE": "Save",
+      "CANCEL": "Cancel",
+      "REQUIRED": "*required"
+    }
+  },
+  "I18N": {
+    "LANGUAGES_LIST": {
+      "ENGLISH": "English",
+      "HUNGARIAN": "Hungarian"
+    }
+  }
+}

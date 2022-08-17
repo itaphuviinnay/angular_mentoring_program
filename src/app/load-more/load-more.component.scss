@@ -1,0 +1,18 @@
+.courses-load-more {
+  height: 48px;
+  border-radius: 6px;
+  box-shadow: 0 1px 24px 0 rgba(18, 21, 35, 0.08);
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+  a {
+    align-self: center;
+    font-size: 12px;
+    line-height: 1.5;
+    text-decoration: underline;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}

@@ -1,0 +1,16 @@
+<div class="fields">
+  <div class="field-label">
+    <label>Description:</label>
+    <label>*required</label>
+  </div>
+  <input
+    #dateInput
+    type="date"
+    [formControl]="date"
+    placeholder="mm/dd/yyyy"
+    maxlength="10"
+    [ngStyle]="{
+      'border-color': date.touched && date.errors ? 'red' : ''
+    }"
+  />
+</div>

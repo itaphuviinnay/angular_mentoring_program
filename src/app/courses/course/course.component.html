@@ -1,0 +1,36 @@
+<div
+  class="course-container"
+  [ngClass]="{ 'top-rated': course.topRated }"
+  [customBorder]="course.creationDate"
+>
+  <div class="title-container">
+    <div class="title-wrapper">
+      <h3 class="title">{{ course.name | uppercase }}</h3>
+      <i *ngIf="course.isTopRated" class="fa fa-star" aria-hidden="true"></i>
+      <div class="course-duration-wrapper">
+        <i class="fa fa-clock-o" aria-hidden="true"></i>
+        <span>{{ course.length | courseDuration }}</span>
+        <i class="fa fa-calendar" aria-hidden="true"></i>
+        <span>{{ course.date | date: 'dd MMM, yyyy' }}</span>
+      </div>
+    </div>
+    <div></div>
+  </div>
+  <div class="course-info">
+    <p class="description">{{ course.description }}</p>
+    <div class="actions">
+      <button class="edit-btn" (click)="onCourseEdit()">
+        <i class="fa fa-pencil" aria-hidden="true"></i>
+        Edit
+      </button>
+      <button class="delete-btn" (click)="onCourseDelete()">
+        <i class="fa fa-trash" aria-hidden="true"></i>
+        Delete
+      </button>
+    </div>
+  </div>
+  <div class="authors-block">
+    <span class="author-label">Authors: </span>
+    <span class="author-name">{{ course.authors | courseAuthors }}</span>
+  </div>
+</div>

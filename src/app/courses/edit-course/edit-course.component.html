@@ -1,0 +1,24 @@
+<div class="edit-course-container">
+  <form class="content" [formGroup]="courseForm" (ngSubmit)="submitCourse()">
+    <div class="title">
+      <span>Edit Course</span>
+    </div>
+    <app-course-title></app-course-title>
+    <app-course-description></app-course-description>
+    <app-course-date></app-course-date>
+    <app-course-duration></app-course-duration>
+    <app-course-authors></app-course-authors>
+    <div class="bottom-row">
+      <button type="button" (click)="cancel()">Cancel</button>
+      <button
+        type="submit"
+        [disabled]="courseForm.invalid || !courseForm.dirty"
+        [ngClass]="
+          !courseForm.invalid && courseForm.dirty ? 'active' : 'disabled'
+        "
+      >
+        Save
+      </button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,36 @@
+.courses-container {
+  margin: 0 60px;
+  .courses-block {
+    .add-course {
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      .add-course-btn {
+        cursor: pointer;
+        width: 136px;
+        height: 36px;
+        color: #fff;
+        border-radius: 3px;
+        background-color: #30b6dd;
+        i.fa {
+          margin-right: 8px;
+        }
+      }
+    }
+  }
+  .no-data-wrapper {
+    height: 48px;
+    border-radius: 6px;
+    box-shadow: 0 1px 24px 0 rgba(18, 21, 35, 0.08);
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    border: 1px solid black;
+    span {
+      align-self: center;
+      font-size: 12px;
+      line-height: 1.5;
+    }
+  }
+}

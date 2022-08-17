@@ -1,0 +1,22 @@
+.fields {
+  width: 97%;
+  .field-label {
+    display: flex;
+    margin-top: 15px;
+    &:first-child {
+      margin-top: 10px;
+    }
+    label {
+      display: flex;
+      flex: 1;
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 15px;
+      &:last-child {
+        font-size: 12px;
+        font-weight: normal;
+        justify-content: flex-end;
+      }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+<div class="new-course-container">
+  <form class="content" [formGroup]="newCourseForm" (ngSubmit)="createCourse()">
+    <div class="title">
+      <span>New Course</span>
+    </div>
+    <app-course-title></app-course-title>
+    <app-course-description></app-course-description>
+    <app-course-date></app-course-date>
+    <app-course-duration></app-course-duration>
+    <app-course-authors></app-course-authors>
+    <div class="bottom-row">
+      <button type="button" (click)="cancelCourseCreation()">Cancel</button>
+      <button
+        type="submit"
+        [disabled]="newCourseForm.invalid"
+        [ngClass]="newCourseForm.invalid === false ? 'active' : 'disabled'"
+      >
+        Save
+      </button>
+    </div>
+  </form>
+</div>

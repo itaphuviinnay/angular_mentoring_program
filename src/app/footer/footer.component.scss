@@ -1,0 +1,13 @@
+footer {
+  position: fixed;
+  width: 100%;
+  top: auto;
+  bottom: 0;
+  color: #c0c3cd;
+  background-color: #414452;
+  span {
+    display: flex;
+    justify-content: flex-end;
+    padding: 20px;
+  }
+}

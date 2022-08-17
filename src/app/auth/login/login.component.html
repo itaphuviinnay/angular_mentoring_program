@@ -1,0 +1,49 @@
+<div class="login-wrapper">
+  <form class="content" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <div class="title">
+      <span>{{ 'PAGES.LOGIN.LOGIN_TXT' | translate }}</span>
+    </div>
+    <div class="fields">
+      <div class="field-label">
+        <label>{{ 'PAGES.LOGIN.USERNAME' | translate }}</label>
+        <label>{{ 'PAGES.SHARED.REQUIRED' | translate }}</label>
+      </div>
+      <input
+        type="text"
+        name="login"
+        [formControl]="login"
+        placeholder="{{ 'PAGES.SHARED.USERNAME_HINT' | translate }}"
+        [ngStyle]="{
+          'border-color': login.touched && login.errors ? 'red' : ''
+        }"
+      />
+    </div>
+    <div class="fields">
+      <div class="field-label">
+        <label>{{ 'PAGES.LOGIN.PASSWORD' | translate }}</label>
+        <label>{{ 'PAGES.SHARED.REQUIRED' | translate }}</label>
+      </div>
+      <input
+        type="password"
+        name="password"
+        [formControl]="password"
+        placeholder="{{ 'PAGES.SHARED.PASSWORD_HINT' | translate }}"
+        [ngStyle]="{
+          'border-color': password.touched && password.errors ? 'red' : ''
+        }"
+      />
+    </div>
+    <div class="bottom-row">
+      <div class="forgot-password">
+        <a>{{ 'PAGES.LOGIN.FORGOT_PASSWORD' | translate }}</a>
+      </div>
+      <button
+        type="submit"
+        [disabled]="loginForm.invalid"
+        [ngClass]="loginForm.invalid === false ? 'active' : 'disabled'"
+      >
+        {{ 'PAGES.LOGIN.LOGIN_TXT' | translate }}
+      </button>
+    </div>
+  </form>
+</div>

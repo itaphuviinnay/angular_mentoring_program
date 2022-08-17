@@ -1,0 +1,13 @@
+<div class="fields">
+  <div class="field-label">
+    <label>Title:</label>
+    <label>*required</label>
+  </div>
+  <input
+    type="text"
+    maxlength="50"
+    [formControl]="title"
+    placeholder="Enter course title"
+    [ngStyle]="{ 'border-color': title.touched && title.errors ? 'red' : '' }"
+  />
+</div>
